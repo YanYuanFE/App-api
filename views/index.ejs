@@ -8,4 +8,17 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
   </body>
+  <script src="/javascript/socket.io.js"></script>
+  <script>
+      var socket = io('http://localhost:3000');
+      socket.on('connect', function(){
+        socket.emit('notify',"world")
+//          socket.emit('message',"hello");
+      });
+      socket.emit('message',"hello");
+      socket.on('notify', function(data){
+          console.log(data);
+      });
+      socket.on('disconnect', function(){});
+  </script>
 </html>
