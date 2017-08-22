@@ -31,6 +31,18 @@ var apiRouter = function (io) {
         })
     });
 
+    router.get('/all',function (req, res) {
+        Weather.find({},  function (err,data) {
+            if(err) {
+                res.send(err);
+            }
+
+            res.json(data);
+
+
+        }).sort({'time':1});
+    });
+
     return router;
 }
 
@@ -59,15 +71,5 @@ router.post('/update', function (req, res, next) {
 
 })
 
-router.get('/all',function (req, res) {
-    Weather.find({},  function (err,data) {
-        if(err) {
-            res.send(err);
-        }
 
-        res.json(data);
-
-
-    }).sort({'time':1});
-});
 module.exports = apiRouter;

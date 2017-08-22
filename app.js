@@ -18,7 +18,7 @@ var app = express();
 app.io = io;
 io.on('connection',function (socket) {
     // console.log(socket);
-    socket.emit('message',{hello:'world'});
+    // socket.emit('message',{hello:'world'});
     socket.on('message',function (data) {
         console.log(data)
     });
